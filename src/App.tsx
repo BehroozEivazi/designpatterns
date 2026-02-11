@@ -1,10 +1,13 @@
 // import { useEffect, useRef, useState } from "react";
 // import { SocketClient } from "./socket/socket.client";
 // import Toggle from "@/toggler";
-import Tab from "./Tabs";
+import { useState } from "react";
+import Modal from "./Modal";
 // const socket = new SocketClient();
 
 function App() {
+  const [show, setShow] = useState<boolean>(false);
+
   //#region
   // const [status, setStatus] = useState("");
   // const [messages, setMessages] = useState<string[]>([]);
@@ -29,14 +32,23 @@ function App() {
   //#endregion
   return (
     <div className="p-8 space-y-6 max-w-md mx-auto">
-      <Tab>
-        <Tab.Panel tabKey="1">پنل اول</Tab.Panel>
-        <Tab.Panel tabKey="2">پنل دوم</Tab.Panel>
-        <Tab.Panel tabKey="3">پنل سوم</Tab.Panel>
-        <Tab.Content tabKey="1">محتوای پنل اول</Tab.Content>
-        <Tab.Content tabKey="2">محتوای پنل دوم</Tab.Content>
-        <Tab.Content tabKey="3">محتوای پنل سوم</Tab.Content>
-      </Tab>
+      <button
+        onClick={() => {
+          setShow(true);
+        }}
+      >
+        click me
+      </button>
+      <Modal
+        open={show}
+        onVisible={(value) => {
+          setShow(value);
+        }}
+      >
+        <Modal.Header>MyName is Header</Modal.Header>
+        <Modal.Content>MyName is Content</Modal.Content>
+        <Modal.Footer>MyName is Footer</Modal.Footer>
+      </Modal>
     </div>
   );
   // return (
