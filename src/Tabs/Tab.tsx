@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TabsContext } from "./context";
+import { Provider } from "./context";
 
 interface TabRootProps {
   children?: React.ReactNode;
@@ -15,7 +15,11 @@ const TabRoot: React.FC<TabRootProps> = ({ children }) => {
   const onChange = (key: string) => {
     setKey(key);
   };
-  return <TabsContext.Provider value={{ activeKey: key, onChange }}>{children}</TabsContext.Provider>;
+  return (
+    <Provider activeKey={key} onChange={onChange}>
+      {children}
+    </Provider>
+  );
 };
 
 const Tab = TabRoot as TabComponent;

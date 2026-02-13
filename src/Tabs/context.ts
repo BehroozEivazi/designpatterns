@@ -1,11 +1,5 @@
-import React from "react";
+import { createContext } from "@/context";
 import type { TabState } from "./model";
-
-export const TabsContext = React.createContext<TabState | null>(null);
-
-export function useTabs() {
-  const ctx = React.useContext(TabsContext);
-
-  if (!ctx) throw new Error("Tabs compound components must be used inside <Tabs />");
-  return ctx;
-}
+export const TabName = "Tabs";
+const [Provider, useContext] = createContext<TabState>(TabName);
+export { Provider, useContext };
